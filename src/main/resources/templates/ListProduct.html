@@ -34,6 +34,9 @@
 
             <th scope="col">Quantity</th>
 
+            <th scope="col">Product ID</th>
+
+            <th scope="col">Action</th>
         </tr>
 
         </thead>
@@ -45,6 +48,11 @@
             <td th:text="${product.productName}"></td>
 
             <td th:text="${product.productQuantity}"></td>
+            <td th:text="${product.productId}"></td>
+
+            <td>
+                <a th:href="@{/product/edit/{productId}(productId=${product.productId})}" class="btn btn-warning btn-sm">Edit</a>
+            </td>
 
         </tr>
 
