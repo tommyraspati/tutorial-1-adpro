@@ -36,4 +36,20 @@ public class ProductController {
         return "ListProduct";
     }
 
+
+    @GetMapping("/edit/{productId}")
+    public String editProductPage(@PathVariable String productId, Model model) {
+        Product product = service.findById(productId);
+        if (product != null) {
+            model.addAttribute("product", product);
+            return "EditProduct"; // You'll need to create this view
+        }
+        return "redirect:/product/list";
+    }
+
+    @PostMapping("/update")
+    public String updateProduct(@ModelAttribute Product product) {
+        service.saveOrUpdate(product);
+        return "redirect:/product/list";
+    }
 }
