@@ -9,4 +9,7 @@ public interface ProductService {
 
     public Product findById(String productId);
 
-    public Product saveOrUpdate(Product product);}
+    public Product saveOrUpdate(Product product);
+
+    public void delete(String productId);
+}
