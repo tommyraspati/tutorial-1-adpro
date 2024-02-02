@@ -19,7 +19,10 @@ class ProductRepositoryTest {
     ProductRepository productRepository;
 
     @BeforeEach
-    void setUp(){
+    void setUp(){}
+
+    @Test
+    void testCreateAndFind(){
         Product product = new Product();
         product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product.setProductName("Sampo Cap Bambang");
