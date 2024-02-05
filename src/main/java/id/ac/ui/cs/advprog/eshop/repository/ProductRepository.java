@@ -32,19 +32,13 @@ public class ProductRepository {
     }
 
     public Product saveOrUpdate(Product product) {
-        if (product.getProductId() != null) {
-            for (int i = 0; i < productData.size(); i++) {
-                if (productData.get(i).getProductId().equals(product.getProductId())) {
-                    productData.set(i, product); // Update existing product
-                    return product;
-                }
-            }
-        } else {
-            // Assign a new ID only if it's a new product
-            product.setProductId(UUID.randomUUID().toString());
-            productData.add(product);
-        }
-        return product;
+        String productId = product.getProductId();
+        Product existingProduct = findById(productId);
+
+        if (existingProduct == null) {
+            throw new IllegalArgumentException("Product with ID " + productId + " does not exist.");
+        }   return existingProduct;
+
     }
 
 }
