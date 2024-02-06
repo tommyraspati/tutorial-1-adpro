@@ -37,7 +37,10 @@ public class ProductRepository {
 
         if (existingProduct == null) {
             throw new IllegalArgumentException("Product with ID " + productId + " does not exist.");
-        }   return existingProduct;
+        }
+        existingProduct.setProductName(product.getProductName());
+        existingProduct.setProductQuantity(product.getProductQuantity());
+        return existingProduct;
 
     }
 
