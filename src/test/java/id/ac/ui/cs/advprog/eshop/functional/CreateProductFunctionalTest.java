@@ -46,8 +46,6 @@ class CreateProductFunctionalTest {
         driver.get(baseUrl + "/product/list");
 
         // Assertion to verify product is in list (simplified example)
-        // Note: This assumes that the product list shows the product name
-        // You may need to adjust the selector based on your actual HTML structure
         String bodyText = driver.findElement(By.tagName("body")).getText();
         assertTrue(bodyText.contains("Test Product"), "New product should be listed in the product list.");
     }
