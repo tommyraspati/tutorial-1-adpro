@@ -11,4 +11,4 @@ public class HomeController {
     public String homePage(Model model) {
         return "HomePage"; // refers to HomePage.html in src/main/resources/templates
     }
-}
+
