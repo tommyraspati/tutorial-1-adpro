@@ -12,3 +12,4 @@ public class HomeController {
         return "HomePage"; // refers to HomePage.html in src/main/resources/templates
     }
 }
+

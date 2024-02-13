@@ -51,7 +51,6 @@ public class ProductRepository {
         if (existingProduct == null) {
             throw new IllegalArgumentException("Product with ID " + productId + " does not exist.");
         }
-
         productData.remove(existingProduct);
     }
 
