@@ -129,4 +129,36 @@ class ProductRepositoryTest {
         // This should not throw an error but simply do nothing
         assertThrows(IllegalArgumentException.class, () -> productRepository.delete(nonExistentProduct));
     }
+
+    @Test
+    void testFindById() {
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product foundProduct = productRepository.findById(product.getProductId());
+        assertEquals(product.getProductId(), foundProduct.getProductId());
+        assertEquals(product.getProductName(), foundProduct.getProductName());
+        assertEquals(product.getProductQuantity(), foundProduct.getProductQuantity());
+    }
+    @Test
+    void testFindByIdIfEmpty(){
+        Product foundProduct = productRepository.findById("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        assertNull(foundProduct);
+    }
+
+    @Test
+    void testFindByIdIfProductDoesNotExist(){
+        Product product = new Product();
+        product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        product.setProductName("Sampo Cap Bambang");
+        product.setProductQuantity(100);
+        productRepository.create(product);
+
+        Product foundProduct = productRepository.findById("a0f9de46-90b1-437d-a0bf-d0821dde9096");
+        assertNull(foundProduct);
+    }
+
 }

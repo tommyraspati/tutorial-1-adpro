@@ -90,4 +90,16 @@ public class ProductServiceImplTest {
         verify(productRepository, times(1)).findById("testId");
         verify(productRepository, times(1)).delete(product);
     }
+
+    @Test
+    void testDeleteNonExistentProduct() {
+        String nonExistentProductId = "nonExistentId";
+        when(productRepository.findById(nonExistentProductId)).thenReturn(null);
+
+        productService.delete(nonExistentProductId);
+
+        verify(productRepository, times(1)).findById(nonExistentProductId);
+        verify(productRepository, never()).delete(any(Product.class));
+    }
+
 }

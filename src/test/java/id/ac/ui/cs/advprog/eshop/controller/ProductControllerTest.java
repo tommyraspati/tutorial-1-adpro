@@ -88,4 +88,15 @@ public class ProductControllerTest {
         verify(productService, times(1)).delete("1");
         assertEquals("redirect:/product/list", viewName);
     }
+
+    @Test
+    void testEditProductPageRedirectWhenProductNotFound() {
+        String nonExistentProductId = "nonExistentId";
+        when(productService.findById(nonExistentProductId)).thenReturn(null);
+
+        String viewName = productController.editProductPage(nonExistentProductId, model);
+
+        verify(productService, times(1)).findById(nonExistentProductId);
+        assertEquals("redirect:/product/list", viewName);
+    }
 }
