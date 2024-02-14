@@ -10,8 +10,7 @@ sonar {
 		property("sonar.projectKey", "tommyraspati_tutorial-1-adpro")
 		property("sonar.organization", "tommyraspati")
 		property("sonar.host.url", "https://sonarcloud.io")
-//		property("sonar.login", "1b2c06b24c44c1cfbb4bc0e7b31fb1b993bebb59")
-	}
+		property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory.get().asFile}/reports/jacoco/test/jacocoTestReport.xml")	}
 }
 
 group = "id.ac.ui.cs.advprog"
