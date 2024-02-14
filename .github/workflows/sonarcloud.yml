@@ -36,7 +36,17 @@ jobs:
       - name: Build and run tests
         run: ./gradlew test jacocoTestReport
       - name: Build and analyze
+        uses: SonarSource/sonarcloud-github-action@master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: chmod +x ./gradlew && ./gradlew build sonar --info
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # Generate a token on Sonarcloud.io, add it to the secrets of this repo with the name SONAR_TOKEN (Settings > Secrets > Actions > add new repository secret)
+        with:
+          # Additional arguments for the sonarcloud scanner
+          args:
+            # Unique keys of your project and organization. You can find them in SonarCloud > Information (bottom-left menu)
+            # mandatory
+            -Dsonar.projectKey=tommyraspati_tutorial-1-adpro
+            -Dsonar.organization=tommyraspati
+            -Dsonar.java.binaries=.
+            -Dsonar.sources=src/main/java
+            -Dsonar.tests=src/test/java
