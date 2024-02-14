@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
-public class ProductControllerTest {
+class ProductControllerTest {
 
     @Mock
     private ProductService productService;
