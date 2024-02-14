@@ -1,6 +1,7 @@
 # tutorial-1-adpro
 
-## Reflection 1
+## Module 1
+### Reflection 1
 
 1. Clean Code Principles Applied:
 
@@ -21,8 +22,8 @@
     - Layered Architecture: Clear separation of concerns among controllers, services, repositories, and models, which promotes maintainability and testability.
     Lombok Usage: Utilization of Lombok annotations (@Getter and @Setter) to reduce boilerplate code in the Product model class.
 
-## Reflection 2
-### 1. Unit Test
+### Reflection 2
+#### 1. Unit Test
 After implementing the unit tests for my Spring Boot application, I feel more confident in the robustness of my code. 
 
 To ensure our unit tests are comprehensive enough to verify our program, we focus on the following strategies:
@@ -33,7 +34,7 @@ To ensure our unit tests are comprehensive enough to verify our program, we focu
 
 100% code coverage may sound ideal, but it doesn't necessarily mean that the code is bug-free. High coverage can indicate that many lines of code have been executed during testing, but it doesn't guarantee that all possible combinations of inputs and states have been tested. 
 
-### 2. Functional Test
+#### 2. Functional Test
 
  I've identified some areas where we can improve code cleanliness and maintainability while ensuring that the new code doesn't compromise code quality:
 
@@ -55,4 +56,26 @@ To ensure our unit tests are comprehensive enough to verify our program, we focu
 
 By addressing these issues, we can enhance the cleanliness and maintainability of our new functional test suite, ensuring that it remains a valuable asset for verifying the functionality of our application.
 
-Note : Latest html template is on the functional-test branch
+Note : Latest html template is on the functional-test branch (Edit: html template already updated on master, module 2)
+
+## Module 2
+### Reflection 1
+1. Switched to Constructor Injection
+
+    Original Issue: I used @Autowired on fields in my service classes. This approach isn't ideal because it makes testing harder, allows dependencies to be changed after creation, and makes it less clear what dependencies a class needs.
+
+    Solution: I changed to using constructor injection. This means I now pass dependencies through the constructor, making our code cleaner, easier to test, and ensuring dependencies can't be changed once set. This aligns with recommended practices and improves our code's design.
+
+2. Updated Test Method Access Modifiers
+
+    Original Issue: My test methods were marked as public, which is unnecessary with JUnit 5. JUnit 5 doesn't require test methods to be public, and it's better to use the most restrictive access level that makes sense.
+
+    Solution: I removed the public modifier from all test methods. This change keeps our code simple and follows the principle of using the least restrictive access level needed. It doesn't affect how tests run but makes our code cleaner and follows modern Java practices.
+
+3. Adding more unit test for the code coverage
+
+### Refelction 2
+
+The CI/CD workflows defined in my ci.yml and sonarcloud.yml files effectively fulfill Continuous Integration (CI) by automating the build and test processes on every push and pull request, alongside conducting code quality checks with SonarCloud. This ensures that every change is automatically integrated, tested, and analyzed for quality, aligning with CI principles of maintaining a stable, high-quality codebase. However, for Continuous Deployment (CD), the setup doesn't automatically deploy changes to production after passing all tests and quality checks. To achieve CD, adding steps for automatic deployment post-successful build and tests would be necessary, transitioning from just integrating and testing code to also deploying it seamlessly to live environments.
+
+
