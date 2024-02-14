@@ -10,7 +10,7 @@ sonar {
 		property("sonar.projectKey", "tommyraspati_tutorial-1-adpro")
 		property("sonar.organization", "tommyraspati")
 		property("sonar.host.url", "https://sonarcloud.io")
-		property("sonar.coverage.jacoco.xmlReportPaths", "${layout.buildDirectory.get().asFile}/reports/jacoco/test/jacocoTestReport.xml")	}
+	}
 }
 
 group = "id.ac.ui.cs.advprog"
@@ -90,4 +90,5 @@ tasks.jacocoTestReport{
 		html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
 	}
 }
+
 
