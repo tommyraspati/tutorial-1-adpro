@@ -1,6 +1,9 @@
 # tutorial-1-adpro
 
 ## Module 1
+<details>
+<summary>Click to see Reflection 1</summary>
+
 ### Reflection 1
 
 1. Clean Code Principles Applied:
@@ -57,8 +60,12 @@ To ensure our unit tests are comprehensive enough to verify our program, we focu
 By addressing these issues, we can enhance the cleanliness and maintainability of our new functional test suite, ensuring that it remains a valuable asset for verifying the functionality of our application.
 
 Note : Latest html template is on the functional-test branch (Edit: html template already updated on master, module 2)
+</details>
+
 
 ## Module 2
+<details>
+<summary>Click to see Reflection 2 </summary>
 ### Reflection 1
 1. Switched to Constructor Injection
 
@@ -74,8 +81,51 @@ Note : Latest html template is on the functional-test branch (Edit: html templat
 
 3. Adding more unit test for the code coverage
 
-### Refelction 2
+### Reflection 2
 
 The CI/CD workflows defined in my ci.yml and sonarcloud.yml files effectively fulfill Continuous Integration (CI) by automating the build and test processes on every push and pull request, alongside conducting code quality checks with SonarCloud. This ensures that every change is automatically integrated, tested, and analyzed for quality, aligning with CI principles of maintaining a stable, high-quality codebase. However, for Continuous Deployment (CD), the setup doesn't automatically deploy changes to production after passing all tests and quality checks. To achieve CD, adding steps for automatic deployment post-successful build and tests would be necessary, transitioning from just integrating and testing code to also deploying it seamlessly to live environments.
+</details>
+
+## Module 3
+<details>
+<summary>Click to see Reflection 3</summary>
+    
+### Reflection
+1. Principles Applied
+- **Single Responsibility Principle (SRP)**
+
+The SRP dictates that a class should have only one reason to change, focusing on a single component within the program. I believe my code adheres to this principle as I have divided the Controller class into three separate classes based on their respective pages: `CarController`, `HomeController`, and `ProductController`. Additionally, I removed the extension of `ProductController` from `CarController` to ensure that `CarController` focuses solely on Cars. Furthermore, I segregated the repository into `CarRepository` for data related to Cars and `ProductRepository` for Product data. Each controller is handled by its respective service class, maintaining a clear separation of responsibilities.
+
+- **Open/Closed Principle (OCP)**
+
+This principle states that software entities should be open for extension but closed for modification. I applied this principle by modifying the `update` method in `CarRepository`. Instead of setting each attribute, I replaced the object in the list. This approach allows for the easy accommodation of `Car` subclasses or attribute modifications, utilizing `CarRepository` effectively.
+
+- **Liskov Substitution Principle (LSP)**
+
+The LSP asserts that objects of a superclass should be replaceable with objects of its subclasses without altering the correctness of the program, implying that subclasses should behave similarly to their superclass. My code does not implement inheritance in a way that would violate this principle, so I conclude that it adheres to LSP.
+
+- **Interface Segregation Principle (ISP)**
+
+ISP emphasizes breaking down large interfaces into smaller, more specific ones so that implementing classes only need to deal with methods that are relevant to them. My code implements this principle by dividing the interface into `ProductService` and `CarService`, allowing for more focused and manageable interfaces.
+
+- **Dependency Inversion Principle (DIP)**
+
+DIP suggests that classes should depend on abstractions rather than concrete classes. My code follows this principle, with `CarController` and `ProductController` depending on the `CarService` and `ProductService` interfaces, respectively, rather than their implementations.
+
+2. Advantages of Applying SOLID Principles:
+
+- **Improved Maintainability**: The separation of concerns facilitated by SRP makes the code easier to maintain, as each class serves a distinct purpose.
+- **Enhanced Readability**: By organizing classes based on their responsibilities, such as `CarController` focusing solely on Car-related operations, the code becomes more intuitive to read and understand.
+- **Simplified Testing**: Adhering to SRP and DIP makes it easier to test specific components, such as `CarController`, ensuring dependencies are related only to Cars, which simplifies the testing process.
+- **Easier Management**: The application of SOLID principles facilitates easier code management, especially when modifications or updates are necessary, by clearly delineating the logic and responsibilities within the codebase.
+
+3. Challenges of Applying SOLID Principles:
+
+- **Increased Code Complexity**: The application of SOLID principles often leads to the creation of multiple separate files due to the necessity of splitting responsibilities. This segmentation can significantly increase the overall complexity of the codebase.
+- **Abundance of Classes and Interfaces**: For each service implementation, there's a corresponding interface service required. This requirement results in a proliferation of classes and interfaces, which can be overwhelming.
+- **Difficulty in Understanding**: The increased number of separations and files can make the codebase harder to navigate and understand, especially for those who are not familiar with the principles behind its organization.
+- **Longer Development Time**: Adhering to SOLID principles means that developers must consider more than just functionality. This thoroughness, while beneficial for the code's quality and future maintenance, requires additional development time to ensure that all principles are correctly applied.
+</details>
+
 
 
