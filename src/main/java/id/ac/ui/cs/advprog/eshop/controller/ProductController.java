@@ -101,7 +101,7 @@ class CarController extends ProductController{
     }
 
     @PostMapping("/editCar")
-    public String deleteCar(@ModelAttribute Car car, Model model) {
+    public String editCarPost(@ModelAttribute Car car, Model model) {
         System.out.println(car.getCarId());
         carService.update(car.getCarId(), car);
         return "redirect:listCar";
