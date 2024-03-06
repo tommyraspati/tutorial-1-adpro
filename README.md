@@ -127,5 +127,17 @@ DIP suggests that classes should depend on abstractions rather than concrete cla
 - **Longer Development Time**: Adhering to SOLID principles means that developers must consider more than just functionality. This thoroughness, while beneficial for the code's quality and future maintenance, requires additional development time to ensure that all principles are correctly applied.
 </details>
 
+## Module 4
+<details>
+<summary>Click to see Reflection 3</summary>
+    
+### Reflection
+1. Reflection on TDD Flow
+I find TDD flow beneficial even though it's challenging for me as a beginner. I still struggle to write tests before implementing classes. However, TDD flow helps me evaluate whether what I'm doing has achieved correctness, maintainability, and a productive workflow. I am forced to constantly check if the tests I create help achieve correctness.
+
+2. Implementation of F.I.R.S.T
+I'm not sure if I have fully implemented F.I.R.S.T. because I have not yet achieved 100% line/branch coverage. Therefore, in the future, I need to add tests to achieve this goal.
+
+</details>
 
 
