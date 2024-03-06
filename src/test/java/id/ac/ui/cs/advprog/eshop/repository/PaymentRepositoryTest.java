@@ -1,6 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.repository;
 
-import enums.PaymentMethod;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
