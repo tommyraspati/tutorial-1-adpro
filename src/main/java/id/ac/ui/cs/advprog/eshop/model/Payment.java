@@ -1,7 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
 
 import lombok.Getter;
-import enums.PaymentStatus;
 
 import java.util.Map;
 
@@ -16,8 +16,7 @@ public class Payment {
         this.id = id;
         this.method = method;
         this.paymentData = paymentData;
-        this.status = PaymentStatus.REJECTED.getValue();
-    }
+        this.status = PaymentStatus.PENDING.getValue();    }
 
     public Payment (String id, String method, Map <String, String> paymentData, String status) {
         this(id, method, paymentData);

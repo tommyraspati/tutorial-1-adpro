@@ -1,8 +1,9 @@
 package id.ac.ui.cs.advprog.eshop.model;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentStatus;
+import id.ac.ui.cs.advprog.eshop.enums.PaymentMethod;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import enums.PaymentStatus;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -19,48 +20,79 @@ class PaymentTest {
 
     @Test
     void testCreatePaymentDefaultStatus() {
-        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab", "VOUCHER", this.paymentData);
+        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab", PaymentMethod.VOUCHER_CODE.getValue(), this.paymentData);
 
-        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
+        assertEquals(PaymentStatus.PENDING.getValue(), payment.getStatus());
         assertEquals("12345678-abcd-efgh-ijkl-1234567890ab", payment.getId());
-        assertEquals("VOUCHER", payment.getMethod());
+        assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getMethod());
 
         assertSame(this.paymentData, payment.getPaymentData());
     }
 
     @Test
     void testCreatePaymentSuccessStatus() {
-        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab", "VOUCHER", this.paymentData, PaymentStatus.SUCCESS.getValue());
-
+        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab",
+                PaymentMethod.VOUCHER_CODE.getValue(), this.paymentData, PaymentStatus.SUCCESS.getValue());
         assertEquals("12345678-abcd-efgh-ijkl-1234567890ab", payment.getId());
         assertEquals(PaymentStatus.SUCCESS.getValue(), payment.getStatus());
-        assertEquals("VOUCHER", payment.getMethod());
-
+        assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getMethod());
         assertSame(this.paymentData, payment.getPaymentData());
+    }
+
+    @Test
+    void testCreatePaymentRejectedStatus() {
+        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab",
+                PaymentMethod.VOUCHER_CODE.getValue(), this.paymentData, PaymentStatus.REJECTED.getValue());
+        assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getMethod());
+        assertEquals(PaymentStatus.REJECTED.getValue(), payment.getStatus());
+        assertEquals("12345678-abcd-efgh-ijkl-1234567890ab", payment.getId());
+        assertSame(this.paymentData, payment.getPaymentData());
+
     }
 
     @Test
     void testCreatePaymentInvalidStatus() {
         assertThrows (IllegalArgumentException.class, () -> {
-            Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab", "VOUCHER", this.paymentData, "INVALID");
+            Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab",
+                    PaymentMethod.VOUCHER_CODE.getValue(), this.paymentData, "INVALID");
         });
     }
 
     @Test
     void testSetPaymentDataEmpty() {
-        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab", "VOUCHER", this.paymentData);
+        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab",
+                PaymentMethod.VOUCHER_CODE.getValue(), this.paymentData);
         this.paymentData.clear();
-        assertThrows (IllegalArgumentException.class, () -> {
+        assertThrows(IllegalArgumentException.class, () -> {
             payment.setPaymentData(this.paymentData);
         });
     }
 
     @Test
     void testSetPaymentDataSuccess() {
-        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab", "VOUCHER", this.paymentData);
+        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab",
+                PaymentMethod.VOUCHER_CODE.getValue(), this.paymentData);
         this.paymentData.put("voucherCode", "ESHOPXXX");
         payment.setPaymentData(this.paymentData);
 
+        assertSame(this.paymentData, payment.getPaymentData());
+    }
+
+    @Test
+    void testCreatePaymentVoucherCodeMethod() {
+        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab", PaymentMethod.VOUCHER_CODE.getValue(), this.paymentData);
+        assertEquals("12345678-abcd-efgh-ijkl-1234567890ab", payment.getId());
+        assertEquals(PaymentMethod.VOUCHER_CODE.getValue(), payment.getMethod());
+        assertEquals(PaymentStatus.PENDING.getValue(), payment.getStatus());
+        assertSame(this.paymentData, payment.getPaymentData());
+    }
+
+    @Test
+    void testCreatePaymentBankTransferMethod() {
+        Payment payment = new Payment("12345678-abcd-efgh-ijkl-1234567890ab", PaymentMethod.BANK_TRANSFER.getValue(), this.paymentData);
+        assertEquals("12345678-abcd-efgh-ijkl-1234567890ab", payment.getId());
+        assertEquals(PaymentMethod.BANK_TRANSFER.getValue(), payment.getMethod());
+        assertEquals(PaymentStatus.PENDING.getValue(), payment.getStatus());
         assertSame(this.paymentData, payment.getPaymentData());
     }
 }
